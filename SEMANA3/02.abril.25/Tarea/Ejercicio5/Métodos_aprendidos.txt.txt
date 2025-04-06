@@ -1,0 +1,104 @@
+En este documento se explicará algunos de los métodos implementados en el desarrollo de este programa, métodos que son nuevos para mi.
+
+
+📌 .join()
+
+🔹 ¿Qué es?
+El método .join() en Python se utiliza para unir elementos de una lista (o cualquier iterable) en una sola cadena de texto, usando un separador que defina.
+
+🔹 Sintaxis:
+"separador".join(lista_de_cadenas)
+
+🔹 En mi código:
+productosCadena = "\n".join(f"{nombre}: ${precio}" for nombre, precio in self.productos)
+ 
+-self.productos es una lista de tuplas (nombre, precio)
+-El for convierte cada tupla en una cadena como "Pan: $1.5"
+-El .join() une todos esos strings separados por un salto de línea (\n), generando un bloque de texto legible.
+
+En resumen, .join() sirve para unir muchas cadenas en una sola, lo cuál es útil para mostrar listas de forma ordenada.
+
+=============================================================================================================================================================================
+
+📌 __str__
+
+🔹 ¿Qué es?
+__str__ es un método especial en Python que se llama automáticamente cuando se utiliza print(objeto) o str(objeto)
+
+🔹 ¿Para qué sirve?
+Este devuelve una representación de forma de texto legible del objeto. Muy útil para imprimir objetos de forma clara.
+
+🔹 En mi código(clase Cliente):
+def __str__(self):
+    return f"ID: {self.id_cliente}, Nombre: {self.nombre}, Contacto: {self.contacto}, Descuento: {self.descuento}"
+
+cuando hago: print(cliente)
+Python usa automáticamente mi __str__() para mostrar toda la información del cliente.
+
+En mi clase Pedido: también se utilizó para mostrar todos los productos y el total final de manera ordenada.
+
+
+=============================================================================================================================================================================
+
+📌 Subclases y Superclases
+
+🔹 ¿Qué es una superclase?
+Es la clase "base" o "madre" de la que otras clases heredan. 
+En mi código: class Cliente, es la superclase
+
+🔹 ¿Qué es una subclase?
+Una clase que hereda atributos y métodos de otra. 
+En mi código: class ClienteRegular(Cliente) y class ClienteVIP(Cliente), son las subclases de Cliente
+
+🔹 ¿Qué heredan?
+Heredan todos los atributos: id_cliente, nombre, contacto, __str__() y cualquier otro método de la superclase.
+
+🔹 ¿Cómo se personalizan?
+Con el constructor (__init__) propio:
+
+def __init__(...):
+    super().__init__(...)  # Llama al constructor de la superclase
+    self.descuento = 10    # Agrega/modifica atributos específicos
+
+Esto permite que cada subclase tenga su propio comportamiento, en este caso diferentes descuentos.
+
+🔹 En mi código:
+Cliente → No tiene descuento
+
+ClienteRegular → 10% de descuento
+
+ClienteVIP → 15% de descuento
+
+Cada uno define su self.descuento, y cuando se calcula el total del pedido, se aplica ese descuento automáticamente, gracias a polimorfismo (cada objeto se comporta según su tipo, aunque se trate como Cliente).
+
+=============================================================================================================================================================================
+
+📌 Polimorfismo
+
+🔹 ¿Qué es?
+El polimorfismo es un principio de la programación orientada a objetos que permite que **diferentes clases que comparten una misma interfaz (o herencia)** puedan comportarse de manera distinta cuando se usan desde una referencia común.
+
+En otras palabras: un mismo método puede funcionar de forma diferente según el tipo de objeto que lo esté usando.
+
+🔹 En el código:
+total *= (1 - self.cliente.get_descuento() / 100)
+
+- self.cliente puede ser un Cliente, ClienteRegular, o ClienteVIP.
+- Todos tienen el método get_descuento().
+- Cada uno devuelve un valor diferente:
+  - Cliente → 0  
+  - ClienteRegular → 10  
+  - ClienteVIP → 15
+
+Aunque el método get_descuento() se llama igual, el resultado cambia dependiendo del tipo real del cliente.
+
+🔹 ¿Por qué es útil?
+Permite escribir código genérico, pero que se adapta automáticamente al comportamiento específico del objeto.  
+No hace falta preguntar el tipo de cliente ni usar condicionales.
+
+🧠 Frase resumen:
+> “Con polimorfismo, los objetos pueden compartir la misma interfaz pero comportarse de forma distinta.”
+
+
+
+
