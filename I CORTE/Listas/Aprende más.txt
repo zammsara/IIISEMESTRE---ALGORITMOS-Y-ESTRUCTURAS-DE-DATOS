@@ -1,0 +1,64 @@
+Explicación sobre Listas y Listas Enlazadas en Python
+
+---
+
+🔗 ¿Qué es una lista enlazada?
+Una lista enlazada (linked list) es una estructura de datos lineal y dinámica que almacena elementos en nodos conectados entre sí.
+
+A diferencia de una lista común de Python (list), donde los elementos están en posiciones contiguas de memoria, en una lista enlazada cada elemento sabe dónde está el siguiente, y así se van encadenando uno tras otro.
+
+---
+
+🧱 ¿Qué es un nodo?
+Un nodo es la unidad básica de una lista enlazada. Cada nodo generalmente tiene dos partes:
+
+1. Dato: el valor que guarda (por ejemplo, un número, texto, objeto, etc.).
+2. Siguiente (next): una referencia o enlace al siguiente nodo de la lista (o None si es el último).
+
+Ejemplo visual:
+[ 10 | o ] → [ 20 | o ] → [ 30 | None ]
+
+
+---
+
+🧐 ¿Para qué sirven las listas enlazadas?
+Se usan cuando:
+- Queremos agregar o quitar elementos frecuentemente sin preocuparnos por mover todo el contenido como en una lista normal.
+- No sabemos cuántos elementos vamos a tener.
+- Estamos trabajando con estructuras como pilas, colas, árboles, etc.
+
+---
+
+⚖️ Diferencias entre listas normales (list) y listas enlazadas:
+
+| Característica       | Lista Python (list)        | Lista Enlazada                  |
+|----------------------|----------------------------|----------------------------------|
+| Almacenamiento       | Contiguo en memoria        | Cada elemento apunta al siguiente |
+| Acceso a elementos   | Rápido (lista[3])          | Lento, hay que recorrer nodo por nodo |
+| Insertar/eliminar    | Lento si no es al final    | Rápido en cualquier parte       |
+| Tamaño               | Requiere redimensionarse   | Dinámico, se expande según se necesita |
+
+---
+
+📅 Las listas normales en Python ¿también usan nodos?
+No, las listas normales de Python (list) no están formadas por nodos.
+
+- Las listas normales son arreglos dinámicos implementados internamente en C.
+- Los elementos están contiguos en memoria.
+- Se puede acceder directamente por índice: lista[2]
+- No hay referencias entre elementos.
+
+---
+
+🔄 Comparación visual
+
+Lista normal (list):
+[10] [20] [30]
+ ↑    ↑    ↑
+pos0 pos1 pos2
+
+
+Lista enlazada:
+[Nodo: 10 | → ] → [Nodo: 20 | → ] → [Nodo: 30 | None]
+
+
