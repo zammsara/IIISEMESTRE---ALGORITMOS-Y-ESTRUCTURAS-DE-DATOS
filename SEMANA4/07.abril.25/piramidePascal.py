@@ -6,5 +6,5 @@ def imprimir_piramide(n, nivel=1): #n es cuántas filas tendrá la pirámide
     print(' ' * (nivel - 1) + '*' * (2 * n - 1))
 
 # Ejemplo de uso:
-altura = 5
+altura = 6
 imprimir_piramide(altura)
