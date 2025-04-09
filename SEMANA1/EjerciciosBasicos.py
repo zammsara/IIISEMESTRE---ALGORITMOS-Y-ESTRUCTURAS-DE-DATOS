@@ -38,9 +38,13 @@ while True:
         case 4:
             val1 = float(input("Ingrese el primer valor para el intercambio: "))
             val2 = float(input("Ingrese el segundo valor para el intercambio: "))
-
-            print(f"Valor 1: {val2:.2f}")
-            print(f"Valor 2: {val1:.2f}")
+            
+            aux = val1
+            val1 = val2
+            val2 = aux
+            
+            print(f"Valor 1: {val1:.2f}")
+            print(f"Valor 2: {val2:.2f}")
         case 5:
             base = int(input("Ingresa la base: "))
             exponente = int(input("Ingresa el exponente: "))
