@@ -1,0 +1,5 @@
+En esta carpeta se encuentra la tarea asignada por la maestra en la SEMANA5.
+Esta se trabajo en grupo, y fue subida a un repositorio individual.
+Pero se esta subiendo en esta carpeta de SEMANA6, ya que está siendo evaluada
+en el transcurso de esta semana, junto con unos ejercicios prácticos a resolverse
+en la próxima sesión, y con eso cerraríamos el ICORTE.
