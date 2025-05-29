@@ -1,0 +1,106 @@
+Fragmento de código a explicar en detalle:
+elif es_operador(simbolo):#si es operador
+            # Mientras haya operadores en la pila con mayor o igual prioridad
+            while (not pila.esta_vacia() and
+                   pila.peek() != '(' and
+                   (prioridad(simbolo) < prioridad(pila.peek()) or
+                    (prioridad(simbolo) == prioridad(pila.peek()) and simbolo != '^'))):
+                salida.append(pila.pop())
+            # Apilar el operador actual
+            pila.push(simbolo)
+
+elif es_operador(simbolo):#si es operador
+            # Mientras haya operadores en la pila con mayor o igual prioridad
+            while (not pila.esta_vacia() and
+                   pila.peek() != '(' and
+                   (prioridad(simbolo) < prioridad(pila.peek()) or
+                    (prioridad(simbolo) == prioridad(pila.peek()) and simbolo != '^'))):
+                salida.append(pila.pop())
+            # Apilar el operador actual
+            pila.push(simbolo)
+
+----------------------------------------------------------------------------------------------------
+Explicación línea por línea:
+
+1. elif es_operador(simbolo): 
+    verifica si el carácter actual(simbolo) en la expresión es un operador
+
+2. while (not pila.esta_vacia() and
+       pila.peek() != '(' and
+       (prioridad(simbolo) < prioridad(pila.peek()) or
+        (prioridad(simbolo) == prioridad(pila.peek()) and simbolo != '^'))):
+
+    Este while asegura que, antes de apilar el operador actual (simbolo), 
+    se desapilen todos los operadores en la pila que tengan mayor o igual prioridad, 
+    excepto si encontramos un '('.
+
+    Vamos a desglosar las condiciones:
+
+    - not pila.esta_vacia():
+    Mientras la pila no esté vacía.
+    No podemos desapilar si la pila está vacía.
+
+    - pila.peek() != '(':
+    Mientras el tope de la pila no sea '('.
+    No desapilamos operadores que están debajo de un '(', porque eso indica que estamos en una subexpresión.
+
+    La condición compleja de prioridad:
+        (prioridad(simbolo) < prioridad(pila.peek()) or
+         (prioridad(simbolo) == prioridad(pila.peek()) and simbolo != '^'))
+
+            - prioridad(simbolo) < prioridad(pila.peek()):
+                El operador en la pila tiene mayor prioridad que el actual, así que se debe desapilar.
+
+            - prioridad(simbolo) == prioridad(pila.peek()) and simbolo != '^':
+                Si ambos tienen igual prioridad, y el operador actual no es '^' (que es derecho asociativo), 
+                entonces también hay que desapilar.
+                ¿Por qué?
+                Para operadores izquierdamente asociados (+, -, *, /), 
+                se desapilan cuando tienen la misma prioridad. Pero para '^' (potencia), que es derecha asociativa, 
+                no se desapila en igualdad de prioridad.
+
+3. salida.append(pila.pop())
+    - ¿Qué hace?
+    Desapila el operador en la cima de la pila y lo añade a la salida en la 
+    expresión postfija.
+
+    - ¿Por qué?
+    Porque los operadores con mayor o igual prioridad que el actual deben ir antes en 
+    la expresión postfija.
+
+4. pila.push(simbolo)
+    - ¿Qué hace?
+    Después de desapilar todos los operadores con mayor o igual prioridad, 
+    apila el operador actual (simbolo).
+
+    - ¿Por qué?
+    Para que en el futuro, si aparecen operadores de menor prioridad, 
+    puedan ser desapilados en orden correcto y mantener la prioridad adecuada en la conversión.
+
+5. Final del proceso y vaciado de la pila:
+
+    while not pila.esta_vacia():
+    salida.append(pila.pop())
+
+    - ¿Qué hace?
+    Cuando se termina de recorrer toda la expresión, se desapilan todos los operadores restantes 
+    en la pila y se agregan a la salida.
+
+    - ¿Por qué?
+    Para asegurarse de que todos los operadores se incluyan en la expresión postfija, en orden 
+    correcto, y que la pila quede vacía al final.
+
+6. return ''.join(salida)
+    - ¿Qué hace?
+    Convierte la lista de caracteres salida en una cadena de texto y la devuelve como resultado final.
+
+    - ¿Por qué?
+    Para presentar la expresión en notación postfija en forma de cadena, lista para ser evaluada o utilizada.
+
+--------------------------------------------------------
+RESUMEN:
+
+    - Cuando detecta un operador, compara su prioridad con los operadores en la pila.
+    - Desapila todos los operadores con mayor o igual prioridad (considerando la asociatividad), agregándolos a la salida.
+    - Luego apila el operador actual.
+    - Al terminar, vacía la pila en orden para completar la conversión.
