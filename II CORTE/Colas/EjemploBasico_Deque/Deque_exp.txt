@@ -1,0 +1,34 @@
+¿Qué es deque?
+Es una estructura de datos que forma parte del módulo "collections" en Python.
+Su nombre viene de double-ended queue o cola de doble extremo, que significa 
+que permite agregar o eliminar elementos tanto al principio como al final de 
+manera eficiente.
+
+¿Por qué usar deque?
+Al trabajar con listas en Python, estas también permiten agregar y quitar 
+elementos, pero no está optimizada para hacerlo al inicio. En cambio, 
+deque sí lo está.
+
+¿Cómo se usa?
+
+	+ Primero hay que importarla: 
+		from collections import deque
+
+	+ Luego se crea la cola: 
+		cola = deque()
+
+	+ Y podemos usar métodos como:
+
+		- append(x): Agrega x al final
+		- appendleft(x): Agrega x al principio
+		- pop(): Elimina el último elemento
+		- popleft(): Elimina el primer elemneto
+		- clear(): Vacía toda la estructura
+		- leng(cola): Devuelve el número de elementos
+		- cola[0]: Accede al primer elemento
+
+Ventajas: 
+	+ Operaciones rápidas y eficientes en ambos extremos (O(1)).
+	+ Ideal para simular colas (FIFO) y también pilas (LIFO).
+	+ Más eficiente que usar listas para estructuras tipo cola.
+
